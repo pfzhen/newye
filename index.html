@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <script src='https://cdn.bootcss.com/jquery/3.2.1/jquery.js'></script>
+    <style>
+    </style>
+</head>
+<body>
+<div class="content"></div>
+<div class="page"></div>
+
+
+</body>
+</html>
+<script type="text/javascript">
+$(function () {
+    load(1)
+    function load(e){
+        $.ajax({
+            url:"http://localhost:3000/item/count",
+            type:"POST",
+            success: function () {
+                var num=Math.(e[0].num/10)
+for(var i=1;i<=num;i++){
+
+}
+                $('button').click(function () {
+                   var e=parseInt($(this).html())
+                    //var e=$(this).attr('data-jgr') 
+                    load(e)
+                })
+
+            }
+        })
+
+        $.ajax({
+          url:"http://localhost:3000/item/page",
+            type:"POST",
+            data:"{num:e}",
+            success: function (e) {
+                var string=''
+                for(var i in e){
+                    string+="<p>"+e[i].name+"<p>"
+                }
+                $('.content').html(string)
+            }
+        })
+    }
+})
+
+
+
+
+
+</script>
